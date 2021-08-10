@@ -2,10 +2,12 @@ package io.github.profile.controller;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.naming.NamingException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -57,16 +59,16 @@ public class ClienteController {
 		
 		ClienteVO clienteVO = new ClienteVO();
 		try {
-			Collection<Cliente> clientes = this.clienteService.buscarCliente(cpf);
-			if (clientes.isEmpty()) {
+			Cliente cliente = this.clienteService.buscarCliente(cpf);
+			if (Objects.isNull(cliente)) {
 				return new ClienteVO(true, "Busca não encontrada!");
 			}
 			clienteVO.setOk(Boolean.TRUE);
-			clienteVO.setMensagem("Clientes");
-			clienteVO.setColecao(clientes);
+			clienteVO.setMensagem("Cliente encontrado no sistema");
+			clienteVO.setCliente(cliente);
 			return clienteVO;
 		} catch (BusinessException e) {
-			LOGGER.error(e);
+			LOGGER.error(e);	
 			return new ClienteVO(false, e.getMessage());
 		}
 	}

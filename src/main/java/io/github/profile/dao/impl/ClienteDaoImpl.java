@@ -1,11 +1,12 @@
 package io.github.profile.dao.impl;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import io.github.profile.dao.AbstractGenericDAO;
@@ -29,12 +30,11 @@ public class ClienteDaoImpl extends AbstractGenericDAO<Cliente, Long> implements
 		return Cliente.class;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<Cliente> buscarCliente(String cpfCliente) throws DAOException {
+	public Cliente buscarCliente(String cpfCliente) throws DAOException {
 		
 		final StringBuilder jpql = new StringBuilder();
-		
+			
 		jpql.append("select c from Cliente c where 1 = 1 ");
 		
 		if(!Objects.isNull(cpfCliente)) {
@@ -51,8 +51,10 @@ public class ClienteDaoImpl extends AbstractGenericDAO<Cliente, Long> implements
 				
 				query.setParameter("cpfCliente", cpfCliente); 
 			}
-			return query.getResultList();
-		} catch (Exception e) {
+			return (Cliente) query.getSingleResult();
+		} catch (final NoResultException e) {
+			return null;
+		} catch (final PersistenceException e) {
 			throw new DAOException(e);
 		}
 	}

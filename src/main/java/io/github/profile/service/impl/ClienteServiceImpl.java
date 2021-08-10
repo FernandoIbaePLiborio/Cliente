@@ -1,19 +1,17 @@
 package io.github.profile.service.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import org.apache.commons.collections.CollectionUtils;
-
 import io.github.profile.dao.ClienteDao;
 import io.github.profile.dao.exeption.BusinessException;
 import io.github.profile.dao.exeption.CampoExcedeLimiteException;
 import io.github.profile.dao.exeption.CampoNaoInformadoException;
 import io.github.profile.dao.exeption.CamposObrigatoriosException;
+import io.github.profile.dao.exeption.CpfCadastradoException;
 import io.github.profile.dao.exeption.DAOException;
 import io.github.profile.model.Cliente;
 import io.github.profile.service.ClienteService;
@@ -48,12 +46,10 @@ public class ClienteServiceImpl implements ClienteService {
 		}
 	}
 	
-	public Collection<Cliente> buscarCliente(final String cpf) throws BusinessException {
+	public Cliente buscarCliente(final String cpf) throws BusinessException {
 		
 		try {
-			Collection<Cliente> clientes = new ArrayList<>();
-			clientes = this.dao.buscarCliente(cpf);
-			return clientes;
+			return this.dao.buscarCliente(cpf);
 		} catch (DAOException e) {
 			throw new BusinessException(e);
 		}
@@ -68,11 +64,15 @@ public class ClienteServiceImpl implements ClienteService {
 		}
 	}
 	
-	private void validarCliente(final Cliente cliente) throws CampoNaoInformadoException, CampoExcedeLimiteException, CamposObrigatoriosException {
+	private void validarCliente(final Cliente cliente) throws BusinessException {
 		
 		if(Objects.isNull(cliente)) {
 			
 			throw new CampoNaoInformadoException();
+		}
+		if (!Objects.isNull(this.buscarCliente(cliente.getCpf()))) {
+			
+			throw new CpfCadastradoException();
 		}
 		if(!Objects.isNull(cliente.getCpf()) && (cliente.getCpf().length() > 11 || cliente.getTelefone().length() > 11)) {
 			

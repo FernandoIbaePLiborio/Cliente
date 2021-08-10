@@ -18,6 +18,6 @@ public interface ClienteService {
 
 	public Collection<Cliente> pesquisar() throws BusinessException;
 
-	public Collection<Cliente> buscarCliente(String cpf) throws BusinessException;
+	public Cliente buscarCliente(String cpf) throws BusinessException;
 
 }
