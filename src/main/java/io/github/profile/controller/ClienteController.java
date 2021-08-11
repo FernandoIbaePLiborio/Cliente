@@ -1,13 +1,11 @@
 package io.github.profile.controller;
 
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.naming.NamingException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

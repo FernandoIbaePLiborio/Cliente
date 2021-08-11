@@ -66,15 +66,15 @@ public class ClienteServiceImpl implements ClienteService {
 	
 	private void validarCliente(final Cliente cliente) throws BusinessException {
 		
-		if(Objects.isNull(cliente)) {
+		if(Objects.isNull(cliente.getCpf())) {
 			
 			throw new CampoNaoInformadoException();
 		}
-		if (!Objects.isNull(this.buscarCliente(cliente.getCpf()))) {
+		if (!Objects.isNull(cliente) && !Objects.isNull(this.buscarCliente(cliente.getCpf()))) {
 			
 			throw new CpfCadastradoException();
 		}
-		if(!Objects.isNull(cliente.getCpf()) && (cliente.getCpf().length() > 11 || cliente.getTelefone().length() > 11)) {
+		if(!Objects.isNull(cliente.getCpf()) && !Objects.isNull(cliente.getTelefone()) && (cliente.getCpf().length() > 11 || cliente.getTelefone().length() > 11)) {
 			
 			throw new CampoExcedeLimiteException();
 		}
