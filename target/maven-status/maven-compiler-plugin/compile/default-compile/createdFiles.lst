@@ -12,6 +12,7 @@ io\github\profile\dao\exeption\CampoNaoInformadoException.class
 io\github\profile\model\Cliente.class
 io\github\profile\fatory\AbstractServiceFactory.class
 io\github\profile\dao\exeption\CamposObrigatoriosException.class
+io\github\profile\dao\exeption\CpfCadastradoException.class
 io\github\profile\vo\AbstractVO.class
 io\github\profile\dao\ClienteDao.class
 io\github\profile\dao\exeption\DAOException.class

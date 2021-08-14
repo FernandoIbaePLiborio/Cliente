@@ -195,7 +195,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>Cliente</finalName>
+    	<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -210,9 +210,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<finalName>Cliente</finalName>
-					<name>${project.name}</name>
-					<appendAssemblyId>false</appendAssemblyId>
+					<warName>${project.artifactId}</warName>
+					<outputFileNameMapping>${project.artifactId}</outputFileNameMapping>
 				</configuration>
 			</plugin>
 		</plugins>

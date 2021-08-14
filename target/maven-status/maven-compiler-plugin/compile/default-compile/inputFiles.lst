@@ -4,6 +4,7 @@ C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\gi
 C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\fatory\ServiceFactory.java
 C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\model\Cliente.java
 C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\dao\exeption\CampoExcedeLimiteException.java
+C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\dao\exeption\CpfCadastradoException.java
 C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\vo\ClienteVO.java
 C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\fatory\AbstractServiceFactory.java
 C:\DESENVOLVIMENTO\projects\CadastroClienteWorkspace\Cliente\src\main\java\io\github\profile\dao\ClienteDao.java

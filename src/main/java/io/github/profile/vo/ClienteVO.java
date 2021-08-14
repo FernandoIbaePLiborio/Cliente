@@ -19,8 +19,8 @@ public class ClienteVO extends AbstractVO<Cliente> {
         super(ok, mensagem);
     }
     
-    public ClienteVO(boolean ok, Throwable throwable) {
-    	super(ok, throwable);
+    public ClienteVO(boolean ok, Throwable throwable, String mensagem) {
+    	super(ok, throwable, mensagem);
     }
 
     public ClienteVO(boolean ok, String mensagem, Cliente cliente) {

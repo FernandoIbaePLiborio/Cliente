@@ -3,12 +3,9 @@ package io.github.profile.controller;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import javax.naming.NamingException;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import io.github.profile.dao.exeption.BusinessException;
 import io.github.profile.fatory.ApiServiceFactory;
 import io.github.profile.model.Cliente;
@@ -33,11 +30,11 @@ public class ClienteController {
 		try {
 			
 			this.clienteService.salvar(cliente);
+			return new ClienteVO(true, "Cliente inserido com sucesso: ".concat(cliente.getNome()));
 		} catch (Exception e) {	
 			LOGGER.error(e);
-			return new ClienteVO(false, e.getMessage());
+			return new ClienteVO(false, e, e.getMessage());
 		}
-		return new ClienteVO(true, "Cliente inserido com sucesso: ".concat(cliente.getNome()));
 	}
 
 	public ClienteVO pesquisar() {
@@ -45,11 +42,12 @@ public class ClienteController {
 		try {
 			clienteVO.setOk(Boolean.TRUE);
 			clienteVO.setMensagem("Clientes");
-			clienteVO.setColecao(this.clienteService.pesquisar().stream().sorted(Comparator.comparingLong(Cliente::getId).reversed()).collect(Collectors.toList()));
+			clienteVO.setColecao(this.clienteService.pesquisar().stream()
+					.sorted(Comparator.comparingLong(Cliente::getId).reversed()).collect(Collectors.toList()));
 			return clienteVO;
 		} catch (BusinessException e) {
 			LOGGER.error(e);
-			return new ClienteVO(false, e.getMessage());
+			return new ClienteVO(false, e, e.getMessage());
 		}
 	}
 	
@@ -67,7 +65,7 @@ public class ClienteController {
 			return clienteVO;
 		} catch (BusinessException e) {
 			LOGGER.error(e);	
-			return new ClienteVO(false, e.getMessage());
+			return new ClienteVO(false, e, e.getMessage());
 		}
 	}
 
@@ -78,7 +76,7 @@ public class ClienteController {
 			return new ClienteVO(true, "Cliente excluído com sucesso");
 		} catch (Exception e) {	
 			LOGGER.error(e);
-			return new ClienteVO(false, e.getMessage());
+			return new ClienteVO(false, e, e.getMessage());
 		}
 	}
 	

@@ -22,10 +22,11 @@ public abstract class AbstractVO<T> {
         this.mensagem = mensagem;
 	}
 	
-	public AbstractVO(boolean ok, Throwable throwable) {
+	public AbstractVO(boolean ok, Throwable throwable, String mensagem) {
 		super();
         this.ok = ok;
         this.throwable = throwable;
+        this.mensagem = mensagem;
 	}
 	
 	public AbstractVO(boolean ok, String mensagem, T objeto) {

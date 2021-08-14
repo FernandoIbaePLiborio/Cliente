@@ -4,7 +4,7 @@ import javax.naming.NamingException;
 
 public class ApiServiceFactory extends AbstractServiceFactory {
 
-	private static final String JNDI_PROJECT_NAME = "Cliente-0.0.1";
+	private static final String JNDI_PROJECT_NAME = "Cliente";
 	
 	private static ApiServiceFactory instance;
 	
